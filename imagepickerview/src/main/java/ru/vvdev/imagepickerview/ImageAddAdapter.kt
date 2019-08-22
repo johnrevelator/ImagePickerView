@@ -39,6 +39,10 @@ class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
         notifyDataSetChanged()
     }
 
+    fun deleteItem(position: Int) {
+        imageList?.removeAt(position);
+        notifyItemRemoved(position); }
+
     fun reloadItem(position: Int) {
         notifyItemChanged(position)
     }
@@ -129,10 +133,10 @@ class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
             Log.i("MyLog", "$dialog tyu")
             close.setOnClickListener(this)
             close.setColorFilter(color, PorterDuff.Mode.SRC_IN)
-            closeBack.setColorFilter(colorBack,PorterDuff.Mode.MULTIPLY)
+            closeBack.setColorFilter(colorBack, PorterDuff.Mode.MULTIPLY)
             Glide.with(view.context)
                     .load(dialog.image)
-                    .apply(bitmapTransform(CenterCrop()))
+                    .apply(RequestOptions.bitmapTransform(CenterCrop()))
                     .into(userAvatar)
 
 

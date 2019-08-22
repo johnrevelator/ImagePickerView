@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Color
+import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
@@ -55,10 +56,10 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
         llRoot = v.findViewById(R.id.ll_root)
         add.setOnClickListener(this)
         val mLayoutManager = LinearLayoutManager(context)
-        mLayoutManager.orientation = LinearLayout.HORIZONTAL
+        mLayoutManager.orientation = HORIZONTAL
         val imageRv = v.findViewById<RecyclerView>(R.id.imageRv)
         imageRv.layoutManager = mLayoutManager
-        imageRv.itemAnimator = null
+        imageRv.itemAnimator = DefaultItemAnimator()
         imageRv.isNestedScrollingEnabled = false
 
         imageRv.setHasFixedSize(false)
@@ -88,9 +89,7 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
 
     override fun onClickDetail(v: View, position: Int) {
         if (v.id == R.id.close) {
-            imageList.removeAt(position)
-            imageAddAdapter.notifyItemRemoved(position)
-            imageAddAdapter.reload()
+            imageAddAdapter.deleteItem(position)
         }
 
     }
@@ -102,4 +101,5 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
     override fun onClick(view: View) {
         addImage(context)
     }
+
 }
