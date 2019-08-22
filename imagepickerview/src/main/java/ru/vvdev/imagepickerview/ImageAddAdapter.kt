@@ -1,6 +1,7 @@
 package ru.vvdev.imagepickerview
 
 
+import android.graphics.PorterDuff
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,7 +19,10 @@ import java.util.ArrayList
 import com.bumptech.glide.request.RequestOptions.bitmapTransform
 
 
-class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail, private val mOnLongClickListenerDetail: OnLongClickListenerDetail, private val color: Int, private val colorBack: Int) : RecyclerView.Adapter<ImageAddAdapter.ViewHolderMy>() {
+class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
+                      private val mOnLongClickListenerDetail: OnLongClickListenerDetail,
+                      private val color: Int, private val colorBack: Int)
+    : RecyclerView.Adapter<ImageAddAdapter.ViewHolderMy>() {
     var width = 0
 
     var child: RecyclerView? = null
@@ -124,11 +128,11 @@ class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
                 return
             Log.i("MyLog", "$dialog tyu")
             close.setOnClickListener(this)
-            close.setColorFilter(color, android.graphics.PorterDuff.Mode.MULTIPLY)
-            closeBack.setColorFilter(colorBack, android.graphics.PorterDuff.Mode.MULTIPLY)
+            close.setColorFilter(color, PorterDuff.Mode.SRC_IN)
+            closeBack.setColorFilter(colorBack,PorterDuff.Mode.MULTIPLY)
             Glide.with(view.context)
                     .load(dialog.image)
-                    .apply(RequestOptions.bitmapTransform(CenterCrop()))
+                    .apply(bitmapTransform(CenterCrop()))
                     .into(userAvatar)
 
 
