@@ -45,6 +45,7 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
     }
 
 
+    @SuppressLint("Recycle", "CustomViewStyleable")
     private fun init(attrs: AttributeSet?) {
 
         val inflater = context
@@ -60,7 +61,7 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
         imageRv.itemAnimator = null
         imageRv.isNestedScrollingEnabled = false
 
-        imageRv.setHasFixedSize(true)
+        imageRv.setHasFixedSize(false)
 
         val arr = context.obtainStyledAttributes(attrs, R.styleable.imgPickr)
         close = arr.getColor(R.styleable.imgPickr_close_btn_color, resources.getColor(R.color.colorPrimary))
