@@ -1,41 +1,47 @@
 package ru.vvdev.imagepickerview
 
-
 import android.graphics.PorterDuff
-import android.support.constraint.ConstraintLayout
+import android.net.Uri
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
-
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-
+import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
+import eu.davidea.flexibleadapter.items.IFlexible
+import eu.davidea.viewholders.FlexibleViewHolder
 import java.util.ArrayList
 
+class ImageItem
+(
+        private val uri: Uri,
+        private val mOnClickListenerDetail: ImageAddAdapter.OnClickListenerDetail,
+        private val mOnLongClickListenerDetail: ImageAddAdapter.OnLongClickListenerDetail,
+        private val color: Int, private val colorBack: Int) : AbstractFlexibleItem<ImageItem.ViewHolderMy>() {
+    override fun bindViewHolder(adapter: FlexibleAdapter<out IFlexible<*>>?, holder: ViewHolderMy, position: Int, payloads: MutableList<Any?>?) {
+        holder.itemView.tag = position
+        holder.close.tag = position
 
-import com.bumptech.glide.request.RequestOptions.bitmapTransform
-import java.lang.invoke.ConstantCallSite
+        //holder.bind(getItem(position), TYPE_ITEM, position)
+    }
 
+    override fun equals(other: Any?): Boolean {
+        val itemOther = other as ImageItem
+        return false
+    }
 
-class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
-                      private val mOnLongClickListenerDetail: OnLongClickListenerDetail,
-                      private val color: Int, private val colorBack: Int)
-    : RecyclerView.Adapter<ImageAddAdapter.ViewHolderMy>() {
-    var width = 0
+    override fun createViewHolder(view: View?, adapter: FlexibleAdapter<out IFlexible<*>>?): ViewHolderMy {
+        return ViewHolderMy(view!!, adapter!!)
+    }
 
-    var child: RecyclerView? = null
-    private var imageList: MutableList<Image>? = ArrayList()
+    override fun getLayoutRes(): Int = R.layout.item_photo_close
 
-
-    fun setData(imageList: MutableList<Image>?) {
+    /*fun setData(imageList: MutableList<Image>?) {
         if (imageList == null)
             return
         this.imageList = imageList
@@ -46,7 +52,6 @@ class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
     }
 
     fun deleteItem(position: Int) {
-        imageList?.removeAt(position);
         notifyItemRemoved(position); }
 
     fun reloadItem(position: Int) {
@@ -61,6 +66,22 @@ class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
             null
         }
     }
+
+    fun changeItem(dialog: Image, position: Int) {
+        if (position < imageList!!.size && position >= 0) {
+            imageList!![position] = dialog
+            reloadItem(position)
+        }
+    }*/
+
+    interface OnClickListenerDetail {
+        fun onClickDetail(v: View, position: Int)
+    }
+
+    interface OnLongClickListenerDetail {
+        fun onLongClick(v: View, position: Int)
+    }
+    /*
 
 
     override fun getItemId(i: Int): Long {
@@ -92,29 +113,9 @@ class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
 
 
     override fun onBindViewHolder(holder: ViewHolderMy, position: Int) {
-        val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT)
-        // Set the height by params
-        params.height = 500
-        params.width = 250
-        // set height of RecyclerView
-        holder.rootLay.layoutParams = params
-
-        holder.itemView.tag = position
-        holder.close.tag = position
-
-        val paramsImage = FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT)
-        // Set the height by params
-
-
-        holder.userAvatar.layoutParams.height = 400
-        holder.userAvatar.layoutParams.width = 200
-        holder.userAvatar.requestLayout()
 
 
 
-        holder.bind(getItem(position), TYPE_ITEM, position)
 
     }
 
@@ -133,23 +134,24 @@ class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
 
     interface OnLongClickListenerDetail {
         fun onLongClick(v: View, position: Int)
-    }
+    }*/
 
-    inner class ViewHolderMy internal constructor(var view: View) : RecyclerView.ViewHolder(view), View.OnClickListener, View.OnLongClickListener {
+    inner class ViewHolderMy(val view: View,
+                             adapter: FlexibleAdapter<out IFlexible<*>>
+    ) : FlexibleViewHolder(view, adapter),
+            View.OnClickListener,
+            View.OnLongClickListener {
 
 
-        internal var userAvatar: ImageView
+        private var userAvatar: ImageView
         internal var close: ImageView
-        internal var closeBack: ImageView
-        internal var rootLay: ConstraintLayout
+        private var closeBack: ImageView
 
 
         init {
             userAvatar = view.findViewById<View>(R.id.image) as ImageView
             close = view.findViewById<View>(R.id.close) as ImageView
             closeBack = view.findViewById<View>(R.id.close_back) as ImageView
-            rootLay = view.findViewById<View>(R.id.rootLayout) as ConstraintLayout
-
         }
 
 
@@ -162,8 +164,7 @@ class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
             closeBack.setColorFilter(colorBack, PorterDuff.Mode.MULTIPLY)
             Glide.with(view.context)
                     .load(dialog.image)
-                    .apply(RequestOptions().transform(CenterCrop()))
-                    .apply(RequestOptions().transform(RoundedCorners(40)))
+                    .apply(RequestOptions.bitmapTransform(CenterCrop()))
                     .into(userAvatar)
 
 
@@ -172,11 +173,14 @@ class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
         override fun onClick(v: View) {
             val position = v.tag as Int
             mOnClickListenerDetail.onClickDetail(v, position)
+            super.onClick(v)
+
         }
 
         override fun onLongClick(v: View): Boolean {
             val position = v.tag as Int
             mOnLongClickListenerDetail.onLongClick(v, position)
+            super.onLongClick(v)
             return true
         }
     }
@@ -186,6 +190,4 @@ class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
         private val TYPE_HEADER = 2
         private val TYPE_ITEM = 1
     }
-
-
 }

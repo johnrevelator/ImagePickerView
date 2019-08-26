@@ -50,6 +50,8 @@ dependencies {
     //RX picker
     compile 'com.mlsdev.rximagepicker:library:2.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'eu.davidea:flexible-adapter:5.0.0-rc2'
+
 
 }
 repositories {
