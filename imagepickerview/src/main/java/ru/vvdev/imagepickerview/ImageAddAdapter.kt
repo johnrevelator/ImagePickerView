@@ -3,32 +3,24 @@ package ru.vvdev.imagepickerview
 
 import android.graphics.PorterDuff
 import android.support.constraint.ConstraintLayout
+import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
+import android.widget.*
 
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 
 import java.util.ArrayList
 
 
-import com.bumptech.glide.request.RequestOptions.bitmapTransform
-import java.lang.invoke.ConstantCallSite
-
-
-class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
-                      private val mOnLongClickListenerDetail: OnLongClickListenerDetail,
+class ImageAddAdapter(private val mClickListener: OnClickChooseImage,
                       private val color: Int, private val colorBack: Int)
-    : RecyclerView.Adapter<ImageAddAdapter.ViewHolderMy>() {
+    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var width = 0
 
     var child: RecyclerView? = null
@@ -78,20 +70,18 @@ class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
         return if (imageList == null) 0 else imageList!!.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderMy {
-
-        var view: View? = null
-
-
-
-        view = LayoutInflater.from(parent.context).inflate(R.layout.item_photo_close, parent, false)
-        return ViewHolderMy(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return if (viewType == 0) {
+            AddHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_photo, parent, false))
+        } else {
+            ViewHolderMy(LayoutInflater.from(parent.context).inflate(R.layout.item_photo_close, parent, false))
+        }
 
 
     }
 
 
-    override fun onBindViewHolder(holder: ViewHolderMy, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 /*        val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT)
         // Set the height by params
@@ -99,23 +89,25 @@ class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
         params.width = 250
         // set height of RecyclerView
         holder.rootLay.layoutParams = params*/
-
-        holder.itemView.tag = position
-        holder.close.tag = position
-
-        val paramsImage = FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT)
-        // Set the height by params
+        when (position) {
+            0 -> {
+                val holder = holder as AddHolder
+                holder.imageCard.tag = position
+                holder.bind()
 
 
-        holder.userAvatar.layoutParams.height = 400
-        holder.userAvatar.layoutParams.width = 400
-        holder.userAvatar.requestLayout()
+            }
+            else -> {
+                val holder = holder as ViewHolderMy
+                holder.itemView.tag = position
+                holder.close.tag = position
+                holder.userAvatar.layoutParams.height = 400
+                holder.userAvatar.layoutParams.width = 400
+                holder.userAvatar.requestLayout()
+                holder.bind(getItem(position), TYPE_ITEM, position)
+            }
 
-
-
-        holder.bind(getItem(position), TYPE_ITEM, position)
-
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -127,7 +119,15 @@ class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
         super.onDetachedFromRecyclerView(recyclerView)
     }
 
+    interface OnClickChooseImage {
+        fun onClickAdd(v: View, position: Int)
+        fun onClickOpenImage(v: View, position: Int)
+        fun onClickDeleteImage(v: View, position: Int)
+        fun onLongClickImage(v: View, position: Int)
+    }
+
     interface OnClickListenerDetail {
+
         fun onClickDetail(v: View, position: Int)
     }
 
@@ -142,6 +142,7 @@ class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
         internal var close: ImageView
         internal var closeBack: ImageView
         internal var rootLay: ConstraintLayout
+        internal var imageCardView: CardView
 
 
         init {
@@ -149,6 +150,7 @@ class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
             close = view.findViewById<View>(R.id.close) as ImageView
             closeBack = view.findViewById<View>(R.id.close_back) as ImageView
             rootLay = view.findViewById<View>(R.id.rootLayout) as ConstraintLayout
+            imageCardView = view.findViewById<View>(R.id.imageCard) as CardView
 
         }
 
@@ -164,18 +166,21 @@ class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
                     .load(dialog.image)
                     .apply(RequestOptions().transform(CenterCrop()))
                     .into(userAvatar)
+            imageCardView.setOnClickListener {
+                mClickListener.onClickOpenImage(it, position)
+            }
 
 
         }
 
         override fun onClick(v: View) {
             val position = v.tag as Int
-            mOnClickListenerDetail.onClickDetail(v, position)
+            mClickListener.onClickDeleteImage(v, position)
         }
 
         override fun onLongClick(v: View): Boolean {
             val position = v.tag as Int
-            mOnLongClickListenerDetail.onLongClick(v, position)
+            mClickListener.onLongClickImage(v, position)
             return true
         }
     }
@@ -186,5 +191,27 @@ class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
         private val TYPE_ITEM = 1
     }
 
+    inner class AddHolder internal constructor(var view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
+        internal var srcAdd: ImageView
+        internal var background: RelativeLayout
+        internal var text: TextView
+        internal var imageCard: CardView
 
+        init {
+            srcAdd = view.findViewById<View>(R.id.camera) as ImageView
+            background = view.findViewById<View>(R.id.add) as RelativeLayout
+            text = view.findViewById<View>(R.id.tv) as TextView
+            imageCard = view.findViewById<View>(R.id.imageCard) as CardView
+        }
+
+        fun bind() {
+            imageCard.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View) {
+            mClickListener.onClickAdd(v, v.tag as Int)
+        }
+
+
+    }
 }

@@ -1,61 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ll_root"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="horizontal">
 
-    android:layout_width="match_parent"
-
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:scrollbars="none">
-
-    <LinearLayout
-
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/imageRv"
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:listitem="@layout/item_photo_close" />
+</LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/add"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/rounded_min">
-
-            <ImageView
-                android:id="@+id/camera"
-                android:layout_width="40dp"
-
-                android:layout_height="40dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/ic_camera" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/camera"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:gravity="center"
-                android:textColor="@color/colorPrimary"
-                android:textSize="10dp" />
-
-        </RelativeLayout>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/imageRv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            tools:listitem="@layout/item_photo_close"/>
-    </LinearLayout>
-
-</HorizontalScrollView>
 
