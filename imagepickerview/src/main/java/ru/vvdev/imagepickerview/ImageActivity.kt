@@ -24,6 +24,9 @@ class ImageActivity : AppCompatActivity() {
             uri = it.get("uro_image") as Uri
         }
         imageSrc.setImageURI(uri)
+        imageClose.setOnClickListener {
+            finish()
+        }
         val window = this.window
 
 
