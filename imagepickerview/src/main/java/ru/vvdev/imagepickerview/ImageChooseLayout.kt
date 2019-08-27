@@ -2,12 +2,15 @@ package ru.vvdev.imagepickerview
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Color
 import android.net.Uri
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
+import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
@@ -16,6 +19,8 @@ import com.mlsdev.rximagepicker.RxImagePicker
 import com.mlsdev.rximagepicker.Sources
 
 import java.util.ArrayList
+import android.util.TypedValue.COMPLEX_UNIT_DIP
+import android.util.TypedValue.COMPLEX_UNIT_SP
 
 
 /**
@@ -55,19 +60,23 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
         val arr = context.obtainStyledAttributes(attrs, R.styleable.imgPickr)
         imageAttr = ImageAttr(
                 cornerRadius = arr.getDimension(R.styleable.imgPickr_cornerRadius, resources.getDimension(R.dimen.defCornerRadius)),
-                viewHeight = arr.getDimension(R.styleable.imgPickr_viewHeight, resources.getDimension(R.dimen.defHeight)),
-                viewWight = arr.getDimension(R.styleable.imgPickr_viewWight, resources.getDimension(R.dimen.defWight)),
+                viewHeight = arr.getDimension(R.styleable.imgPickr_viewHeight, resources.getDimension(R.dimen.defHeight)).toInt(),
+                viewWight = arr.getDimension(R.styleable.imgPickr_viewWidth, resources.getDimension(R.dimen.defWidth)).toInt(),
                 backClose = arr.getColor(R.styleable.imgPickr_backgroundView, Color.parseColor("#ffffff")),
                 tintClose = arr.getColor(R.styleable.imgPickr_close_btn_color, resources.getColor(R.color.colorPrimary)),
                 addAttr = AddAttr(
                         drawable = arr.getResourceId(R.styleable.imgPickr_imageAdd, R.drawable.ic_camera),
                         text = arr.getString(R.styleable.imgPickr_text) ?: "",
-                        textSize = arr.getDimension(R.styleable.imgPickr_textSize, resources.getDimension(R.dimen.defTextSize)),
+                        textSize = arr.getDimension(R.styleable.imgPickr_textSize, resources.getDimension(R.dimen.defTextSize)).spToPx(),
                         textStyle = arr.getInt(R.styleable.imgPickr_textStyle, 0),
                         imageBack = arr.getColor(R.styleable.imgPickr_backAdd, resources.getColor(R.color.dark_grey)),
-                        textColor = arr.getColor(R.styleable.imgPickr_textColor, resources.getColor(R.color.grey))
+                        textColor = arr.getColor(R.styleable.imgPickr_textColor, resources.getColor(R.color.grey)),
+                        addHeight = arr.getDimension(R.styleable.imgPickr_addHeight, resources.getDimension(R.dimen.defAddHeight)).toInt(),
+                        addWidth = arr.getDimension(R.styleable.imgPickr_addHeight, resources.getDimension(R.dimen.defAddWight)).toInt()
                 )
         )
+        Log.d("TAGLIFE", "textSize ${arr.getDimension(R.styleable.imgPickr_textSize, resources.getDimension(R.dimen.defTextSize))}" +
+                "viewHeight ${arr.getDimension(R.styleable.imgPickr_viewHeight, resources.getDimension(R.dimen.defHeight))}")
 
 
         imageRv.setBackgroundColor(imageAttr.backClose)
@@ -107,4 +116,11 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
 
     override fun onLongClickImage(v: View, position: Int) {
     }
+
+
+    private fun Float.spToPx(): Float {
+        return this / Resources.getSystem().displayMetrics.density
+    }
+
+
 }

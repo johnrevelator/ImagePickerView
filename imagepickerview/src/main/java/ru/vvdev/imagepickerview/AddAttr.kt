@@ -6,5 +6,7 @@ data class AddAttr(
         val textSize: Float,
         val textStyle: Int,
         val imageBack: Int,
-        val textColor: Int
+        val textColor: Int,
+        val addHeight: Int,
+        val addWidth: Int
 )

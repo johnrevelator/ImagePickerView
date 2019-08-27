@@ -3,6 +3,7 @@ package ru.vvdev.imagepickerview
 
 import android.content.res.Resources
 import android.graphics.PorterDuff
+import android.graphics.Typeface
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
@@ -185,9 +186,14 @@ class ImageAddAdapter(private val mClickListener: OnClickChooseImage,
                 background.layoutParams.width = viewWight.toInt()
                 background.layoutParams.height = viewHeight.toInt()
                 imageCard.radius = cornerRadius
+                srcAdd.layoutParams.height = addAttr.addHeight.toInt()
+                srcAdd.layoutParams.width = addAttr.addWidth.toInt()
                 srcAdd.setImageDrawable(resources.getDrawable(addAttr.drawable))
                 text.text = addAttr.text
                 text.setTextColor(addAttr.textColor)
+                text.textSize = addAttr.textSize
+                text.setTypeface(null, addAttr.textStyle)
+
             }
 
 
