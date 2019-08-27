@@ -129,10 +129,16 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
         context.startActivity(i)
     }
 
+    /**
+     * this set listener for send item(imageUri and itemPosition)
+     */
     fun setOpenClickListener(openClick: ImageAddAdapter.OpenClick) {
         this.openClick = openClick
     }
 
+    /**
+     * set animator to recycler view
+     * */
     fun setAnimator(animator: RecyclerView.ItemAnimator) {
         imageRv.itemAnimator = animator
     }
