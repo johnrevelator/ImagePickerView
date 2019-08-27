@@ -21,9 +21,7 @@ import java.util.ArrayList
 class ImageAddAdapter(private val mClickListener: OnClickChooseImage,
                       private val color: Int, private val colorBack: Int)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var width = 0
 
-    var child: RecyclerView? = null
     private var imageList: MutableList<Image>? = ArrayList()
 
 
@@ -82,31 +80,13 @@ class ImageAddAdapter(private val mClickListener: OnClickChooseImage,
 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-/*        val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT)
-        // Set the height by params
-        params.height = 500
-        params.width = 250
-        // set height of RecyclerView
-        holder.rootLay.layoutParams = params*/
         when (position) {
             0 -> {
-                val holder = holder as AddHolder
-                holder.imageCard.tag = position
-                holder.bind()
-
-
+                (holder as AddHolder).bind(position)
             }
             else -> {
-                val holder = holder as ViewHolderMy
-                holder.itemView.tag = position
-                holder.close.tag = position
-                holder.userAvatar.layoutParams.height = 400
-                holder.userAvatar.layoutParams.width = 400
-                holder.userAvatar.requestLayout()
-                holder.bind(getItem(position), TYPE_ITEM, position)
+                (holder as ViewHolderMy).bind(getItem(position), TYPE_ITEM, position)
             }
-
         }
     }
 
@@ -115,24 +95,11 @@ class ImageAddAdapter(private val mClickListener: OnClickChooseImage,
         return position
     }
 
-    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView?) {
-        super.onDetachedFromRecyclerView(recyclerView)
-    }
-
     interface OnClickChooseImage {
         fun onClickAdd(v: View, position: Int)
         fun onClickOpenImage(v: View, position: Int)
         fun onClickDeleteImage(v: View, position: Int)
         fun onLongClickImage(v: View, position: Int)
-    }
-
-    interface OnClickListenerDetail {
-
-        fun onClickDetail(v: View, position: Int)
-    }
-
-    interface OnLongClickListenerDetail {
-        fun onLongClick(v: View, position: Int)
     }
 
     inner class ViewHolderMy internal constructor(var view: View) : RecyclerView.ViewHolder(view), View.OnClickListener, View.OnLongClickListener {
@@ -159,6 +126,11 @@ class ImageAddAdapter(private val mClickListener: OnClickChooseImage,
             if (dialog == null)
                 return
             Log.i("MyLog", "$dialog tyu")
+            itemView.tag = position
+            close.tag = position
+            userAvatar.layoutParams.height = 400
+            userAvatar.layoutParams.width = 400
+
             close.setOnClickListener(this)
             close.setColorFilter(color, PorterDuff.Mode.SRC_IN)
             closeBack.setColorFilter(colorBack, PorterDuff.Mode.MULTIPLY)
@@ -204,7 +176,11 @@ class ImageAddAdapter(private val mClickListener: OnClickChooseImage,
             imageCard = view.findViewById<View>(R.id.imageCard) as CardView
         }
 
-        fun bind() {
+        fun bind(position: Int) {
+            imageCard.tag = position
+            background.layoutParams.width = 400
+            background.layoutParams.height = 400
+            // srcAdd.setImageDrawable()
             imageCard.setOnClickListener(this)
         }
 

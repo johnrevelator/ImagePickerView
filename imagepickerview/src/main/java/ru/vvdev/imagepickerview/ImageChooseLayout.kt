@@ -25,7 +25,7 @@ import java.util.ArrayList
  * Created by alexanderklimov on 6/2/18.
  */
 
-class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(context, attrs), ImageAddAdapter.OnClickListenerDetail, ImageAddAdapter.OnLongClickListenerDetail, View.OnClickListener, ImageAddAdapter.OnClickChooseImage {
+class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(context, attrs), ImageAddAdapter.OnClickChooseImage {
 
     internal var imageList: MutableList<Image> = ArrayList()
 
@@ -87,21 +87,6 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
             imageAddAdapter.reload()
         }
 
-    }
-
-    override fun onClickDetail(v: View, position: Int) {
-        if (v.id == R.id.close) {
-            imageAddAdapter.deleteItem(position)
-        }
-
-    }
-
-    override fun onLongClick(v: View, position: Int) {
-
-    }
-
-    override fun onClick(view: View) {
-        //addImage(context)
     }
 
     override fun onClickAdd(v: View, position: Int) {
