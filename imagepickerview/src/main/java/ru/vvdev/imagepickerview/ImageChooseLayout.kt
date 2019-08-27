@@ -50,7 +50,7 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
         imageRv.itemAnimator = DefaultItemAnimator()
         imageRv.isNestedScrollingEnabled = false
 
-        imageRv.setHasFixedSize(false)
+        imageRv.setHasFixedSize(true)
 
         val arr = context.obtainStyledAttributes(attrs, R.styleable.imgPickr)
         imageAttr = ImageAttr(
