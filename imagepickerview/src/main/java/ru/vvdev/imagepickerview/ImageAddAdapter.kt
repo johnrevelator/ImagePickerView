@@ -181,10 +181,15 @@ class ImageAddAdapter(private val mClickListener: OnClickChooseImage,
 
         fun bind(position: Int, attr: ImageAttr) {
             imageCard.tag = position
-            background.layoutParams.width = attr.viewWight.toInt()
-            background.layoutParams.height = attr.viewHeight.toInt()
-            imageCard.radius = attr.cornerRadius
-            srcAdd.setImageDrawable(resources.getDrawable(attr.addAttr.drawable))
+            with(attr) {
+                background.layoutParams.width = viewWight.toInt()
+                background.layoutParams.height = viewHeight.toInt()
+                imageCard.radius = cornerRadius
+                srcAdd.setImageDrawable(resources.getDrawable(addAttr.drawable))
+                text.text = addAttr.text
+                text.setTextColor(addAttr.textColor)
+            }
+
 
             // srcAdd.setImageDrawable()
             imageCard.setOnClickListener(this)

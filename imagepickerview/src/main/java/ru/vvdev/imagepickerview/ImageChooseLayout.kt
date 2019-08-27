@@ -64,7 +64,8 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
                         text = arr.getString(R.styleable.imgPickr_text) ?: "",
                         textSize = arr.getDimension(R.styleable.imgPickr_textSize, resources.getDimension(R.dimen.defTextSize)),
                         textStyle = arr.getInt(R.styleable.imgPickr_textStyle, 0),
-                        imageBack = arr.getColor(R.styleable.imgPickr_backAdd, resources.getColor(R.color.dark_grey))
+                        imageBack = arr.getColor(R.styleable.imgPickr_backAdd, resources.getColor(R.color.dark_grey)),
+                        textColor = arr.getColor(R.styleable.imgPickr_textColor, resources.getColor(R.color.grey))
                 )
         )
 

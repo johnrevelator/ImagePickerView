@@ -16,6 +16,7 @@
 
         <attr name="text" format="reference|string" />
         <attr name="textSize" format="reference|dimension" />
+        <attr name="textColor" format="reference|color" />
         <attr name="textStyle">
             <flag name="normal" value="0" />
             <flag name="bold" value="1" />
