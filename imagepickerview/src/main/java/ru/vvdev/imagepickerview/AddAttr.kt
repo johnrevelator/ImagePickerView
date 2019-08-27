@@ -1,11 +1,10 @@
 package ru.vvdev.imagepickerview
 
-import android.graphics.drawable.Drawable
-
 data class AddAttr(
-        val drawable: Drawable,
+        val drawable: Int,
         val text: String,
-        val textSize: Int,
+        val textSize: Float,
         val textStyle: Int,
         val imageBack: Int
+
 )

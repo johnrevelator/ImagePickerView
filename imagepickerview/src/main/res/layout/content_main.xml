@@ -17,8 +17,9 @@
         android:layout_marginRight="8dp"
         app:backgroundView="@android:color/black"
         app:close_btn_color="@android:color/white"
+        app:cornerRadius="16dp"
+        app:imageAdd="@drawable/ic_close_inside"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

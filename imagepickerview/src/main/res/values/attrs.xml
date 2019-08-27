@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="imgPickr">
-    <attr name="backgroundView" format="reference|color" />
-    <attr name="close_btn_color" format="reference|color" />
+        <attr name="backgroundView" format="reference|color" />
+        <attr name="close_btn_color" format="reference|color" />
+
+        <attr name="viewHeight" format="reference|dimension" />
+        <attr name="viewWight" format="reference|dimension" />
+
+
+        <attr name="cornerRadius" format="reference|dimension" />
+
+        <attr name="backAdd" format="reference|color" />
+        <attr name="imageAdd" format="reference|integer" />
+
+
+        <attr name="text" format="reference|string" />
+        <attr name="textSize" format="reference|dimension" />
+        <attr name="textStyle">
+            <flag name="normal" value="0" />
+            <flag name="bold" value="1" />
+            <flag name="italic" value="2" />
+        </attr>
+
 
     </declare-styleable>
 </resources>

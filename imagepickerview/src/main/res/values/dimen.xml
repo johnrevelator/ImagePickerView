@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="defCornerRadius">8dp</dimen>
+    <dimen name="defTextSize">12sp</dimen>
+    <dimen name="defHeight">90dp</dimen>
+    <dimen name="defWight">90dp</dimen>
+
+</resources>
