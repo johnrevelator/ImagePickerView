@@ -19,10 +19,11 @@ class ImageActivity : AppCompatActivity() {
             uri = it.get("uro_image") as Uri
         }
         imageClose.setOnClickListener { finish() }
-        Glide.with(applicationContext)
-                .load(uri)
-                .apply(RequestOptions().transform(CenterCrop()))
-                .into(imageSrc)
+        imageSrc.setImageURI(uri)
+        /* Glide.with(applicationContext)
+                 .load(uri)
+                 .apply(RequestOptions().transform(CenterCrop()))
+                 .into(imageSrc)*/
 
     }
 }

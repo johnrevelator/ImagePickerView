@@ -32,7 +32,7 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
 
     internal var imageList: MutableList<Image> = ArrayList()
     internal lateinit var openClick: ImageAddAdapter.OpenClick
-
+    private lateinit var imageRv: RecyclerView
     internal lateinit var imageAddAdapter: ImageAddAdapter
     private lateinit var imageAttr: ImageAttr
 
@@ -52,7 +52,7 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
         val v = inflater.inflate(R.layout.view_image_choose_layout, this, true)
         val mLayoutManager = LinearLayoutManager(context)
         mLayoutManager.orientation = HORIZONTAL
-        val imageRv = v.findViewById<RecyclerView>(R.id.imageRv)
+        imageRv = v.findViewById<RecyclerView>(R.id.imageRv)
         imageRv.layoutManager = mLayoutManager
         imageRv.itemAnimator = DefaultItemAnimator()
         imageRv.isNestedScrollingEnabled = false
@@ -131,6 +131,10 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
 
     fun setOpenClickListener(openClick: ImageAddAdapter.OpenClick) {
         this.openClick = openClick
+    }
+
+    fun setAnimator(animator: RecyclerView.ItemAnimator) {
+        imageRv.itemAnimator = animator
     }
 
 

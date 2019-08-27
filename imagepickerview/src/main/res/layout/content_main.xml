@@ -38,18 +38,18 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
 
-        app:addHeight="100dp"
-        app:addWidth="100dp"
+        app:addHeight="40dp"
+        app:addWidth="40dp"
         app:backAdd="@color/colorPrimary"
         app:close_btn_color="@android:color/black"
-        app:cornerRadius="16dp"
+        app:cornerRadius="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:text="KEKE"
         app:textColor="@color/black"
         app:textSize="12sp"
-        app:textStyle="italic"
+        app:textStyle="bold"
         app:viewHeight="200dp"
         app:viewWidth="100dp" />
 

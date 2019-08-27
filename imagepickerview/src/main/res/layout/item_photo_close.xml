@@ -52,8 +52,8 @@
 
             android:layout_centerInParent="true"
             android:padding="1dp"
-            android:src="@drawable/ic_circle"
-            android:tint="@color/background" />
+            android:tint="@color/background"
+            app:srcCompat="@drawable/ic_circle" />
 
         <ImageView
             android:id="@+id/close"

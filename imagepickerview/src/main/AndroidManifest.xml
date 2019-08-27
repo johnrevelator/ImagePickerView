@@ -2,7 +2,10 @@
     package="ru.vvdev.imagepickerview">
 
     <application>
-        <activity android:name=".ImageActivity">
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".ImageActivity"
+            >
 
 
         </activity>
