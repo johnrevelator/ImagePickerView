@@ -92,13 +92,13 @@ class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
 
 
     override fun onBindViewHolder(holder: ViewHolderMy, position: Int) {
-        val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+/*        val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT)
         // Set the height by params
         params.height = 500
         params.width = 250
         // set height of RecyclerView
-        holder.rootLay.layoutParams = params
+        holder.rootLay.layoutParams = params*/
 
         holder.itemView.tag = position
         holder.close.tag = position
@@ -109,7 +109,7 @@ class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
 
 
         holder.userAvatar.layoutParams.height = 400
-        holder.userAvatar.layoutParams.width = 200
+        holder.userAvatar.layoutParams.width = 400
         holder.userAvatar.requestLayout()
 
 
@@ -163,7 +163,6 @@ class ImageAddAdapter(private val mOnClickListenerDetail: OnClickListenerDetail,
             Glide.with(view.context)
                     .load(dialog.image)
                     .apply(RequestOptions().transform(CenterCrop()))
-                    .apply(RequestOptions().transform(RoundedCorners(40)))
                     .into(userAvatar)
 
 
