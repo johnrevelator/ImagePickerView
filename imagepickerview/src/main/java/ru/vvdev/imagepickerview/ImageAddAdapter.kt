@@ -4,6 +4,7 @@ package ru.vvdev.imagepickerview
 import android.content.res.Resources
 import android.graphics.PorterDuff
 import android.graphics.Typeface
+import android.net.Uri
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
@@ -22,8 +23,9 @@ import java.util.ArrayList
 
 class ImageAddAdapter(private val mClickListener: OnClickChooseImage,
                       private val attr: ImageAttr,
-                      private val resources: Resources)
-    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+                      private val resources: Resources,
+                      private val openClick: OpenClick
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var imageList: MutableList<Image>? = ArrayList()
 
@@ -105,6 +107,12 @@ class ImageAddAdapter(private val mClickListener: OnClickChooseImage,
         fun onLongClickImage(v: View, position: Int)
     }
 
+    interface OpenClick {
+        fun openClick(uri: Uri, position: Int)
+
+    }
+
+
     inner class ViewHolderMy internal constructor(var view: View) : RecyclerView.ViewHolder(view), View.OnClickListener, View.OnLongClickListener {
 
 
@@ -144,6 +152,7 @@ class ImageAddAdapter(private val mClickListener: OnClickChooseImage,
                     .into(userAvatar)
             imageCardView.setOnClickListener {
                 mClickListener.onClickOpenImage(it, position)
+                openClick.openClick(getItem(position)!!.image, position)
             }
 
 

@@ -2,6 +2,7 @@ package ru.vvdev.imagepickerview
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Color
 import android.net.Uri
@@ -27,9 +28,10 @@ import android.util.TypedValue.COMPLEX_UNIT_SP
  * Created by alexanderklimov on 6/2/18.
  */
 
-class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(context, attrs), ImageAddAdapter.OnClickChooseImage {
+class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(context, attrs), ImageAddAdapter.OnClickChooseImage, ImageAddAdapter.OpenClick {
 
     internal var imageList: MutableList<Image> = ArrayList()
+    internal lateinit var openClick: ImageAddAdapter.OpenClick
 
     internal lateinit var imageAddAdapter: ImageAddAdapter
     private lateinit var imageAttr: ImageAttr
@@ -56,7 +58,7 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
         imageRv.isNestedScrollingEnabled = false
 
         imageRv.setHasFixedSize(true)
-
+        setOpenClickListener(this)
         val arr = context.obtainStyledAttributes(attrs, R.styleable.imgPickr)
         imageAttr = ImageAttr(
                 cornerRadius = arr.getDimension(R.styleable.imgPickr_cornerRadius, resources.getDimension(R.dimen.defCornerRadius)),
@@ -81,7 +83,7 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
 
         imageRv.setBackgroundColor(imageAttr.backClose)
 
-        imageAddAdapter = ImageAddAdapter(this, imageAttr, resources)
+        imageAddAdapter = ImageAddAdapter(this, imageAttr, resources, this)
         imageRv.adapter = imageAddAdapter
         imageList.add(Image(Uri.EMPTY))
         imageAddAdapter.setData(imageList)
@@ -120,6 +122,15 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
 
     private fun Float.spToPx(): Float {
         return this / Resources.getSystem().displayMetrics.density
+    }
+
+    override fun openClick(uri: Uri, position: Int) {
+        val i = Intent(context, ImageActivity::class.java).putExtra("uro_image", uri)
+        context.startActivity(i)
+    }
+
+    fun setOpenClickListener(openClick: ImageAddAdapter.OpenClick) {
+        this.openClick = openClick
     }
 
 
