@@ -6,22 +6,19 @@ import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Color
 import android.net.Uri
+import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.util.Log
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-
+import android.widget.Toast
 import com.mlsdev.rximagepicker.RxImagePicker
 import com.mlsdev.rximagepicker.Sources
-
-import java.util.ArrayList
-import android.util.TypedValue.COMPLEX_UNIT_DIP
-import android.util.TypedValue.COMPLEX_UNIT_SP
+import java.util.*
 
 
 /**
@@ -98,6 +95,7 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
             imageList.add(Image(uri))
             imageAddAdapter.setData(imageList)
             imageAddAdapter.reload()
+            Toast.makeText(context, uri.toString(), Toast.LENGTH_LONG).show()
         }
 
     }

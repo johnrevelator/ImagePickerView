@@ -1,13 +1,15 @@
 <component name="libraryTable">
   <library name="Gradle: eu.davidea:flexible-adapter:5.0.0-rc2@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4fadaf7ed8dd44986c9fcb74fe8d0143/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/de8c2a4749afa8f8bc371b12b3590f5f/flexible-adapter-5.0.0-rc2/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4fadaf7ed8dd44986c9fcb74fe8d0143/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4fadaf7ed8dd44986c9fcb74fe8d0143/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/de8c2a4749afa8f8bc371b12b3590f5f/flexible-adapter-5.0.0-rc2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/de8c2a4749afa8f8bc371b12b3590f5f/flexible-adapter-5.0.0-rc2/res" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/eu.davidea/flexible-adapter/5.0.0-rc2/68d697641e13886f3ba8e8a69783a88628318ac4/flexible-adapter-5.0.0-rc2-javadoc.jar!/" />
+    </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/eu.davidea/flexible-adapter/5.0.0-rc2/695f2a37006b4fb07cadd5be5614ee4e0c0c90dd/flexible-adapter-5.0.0-rc2-sources.jar!/" />
     </SOURCES>
