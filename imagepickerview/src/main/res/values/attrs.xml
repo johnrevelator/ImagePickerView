@@ -24,6 +24,8 @@
             <flag name="bold" value="1" />
             <flag name="italic" value="2" />
         </attr>
+        <attr name="maxPhoto" format="integer" />
+        <attr name="messageWhenMaxSize" format="reference|string" />
 
 
     </declare-styleable>

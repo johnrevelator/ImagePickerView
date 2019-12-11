@@ -21,10 +21,11 @@ import com.bumptech.glide.request.RequestOptions
 import java.util.ArrayList
 
 
-class ImageAddAdapter(private val mClickListener: OnClickChooseImage,
-                      private val attr: ImageAttr,
-                      private val resources: Resources,
-                      private val openClick: OpenClick
+class ImageAddAdapter(
+    private val mClickListener: OnClickChooseImage,
+    private val attr: ImageAttr,
+    private val resources: Resources,
+    private val openClick: OpenClick
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var imageList: MutableList<Image>? = ArrayList()
@@ -75,9 +76,21 @@ class ImageAddAdapter(private val mClickListener: OnClickChooseImage,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == 0) {
-            AddHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_photo, parent, false))
+            AddHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.item_photo,
+                    parent,
+                    false
+                )
+            )
         } else {
-            ViewHolderMy(LayoutInflater.from(parent.context).inflate(R.layout.item_photo_close, parent, false))
+            ViewHolderMy(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.item_photo_close,
+                    parent,
+                    false
+                )
+            )
         }
 
 
@@ -113,7 +126,8 @@ class ImageAddAdapter(private val mClickListener: OnClickChooseImage,
     }
 
 
-    inner class ViewHolderMy internal constructor(var view: View) : RecyclerView.ViewHolder(view), View.OnClickListener, View.OnLongClickListener {
+    inner class ViewHolderMy internal constructor(var view: View) : RecyclerView.ViewHolder(view),
+        View.OnClickListener, View.OnLongClickListener {
 
 
         internal var userAvatar: ImageView
@@ -139,17 +153,17 @@ class ImageAddAdapter(private val mClickListener: OnClickChooseImage,
             Log.i("MyLog", "$dialog tyu")
             itemView.tag = position
             close.tag = position
-            userAvatar.layoutParams.height = attr.viewHeight.toInt()
-            userAvatar.layoutParams.width = attr.viewWight.toInt()
+            userAvatar.layoutParams.height = attr.viewHeight
+            userAvatar.layoutParams.width = attr.viewWight
             imageCardView.radius = attr.cornerRadius
 
             close.setOnClickListener(this)
             close.setColorFilter(attr.tintClose, PorterDuff.Mode.SRC_IN)
             closeBack.setColorFilter(attr.backClose, PorterDuff.Mode.MULTIPLY)
             Glide.with(view.context)
-                    .load(dialog.image)
-                    .apply(RequestOptions().transform(CenterCrop()))
-                    .into(userAvatar)
+                .load(dialog.image)
+                .apply(RequestOptions().transform(CenterCrop()))
+                .into(userAvatar)
             imageCardView.setOnClickListener {
                 mClickListener.onClickOpenImage(it, position)
                 openClick.openClick(getItem(position)!!.image, position)
@@ -176,7 +190,8 @@ class ImageAddAdapter(private val mClickListener: OnClickChooseImage,
         private val TYPE_ITEM = 1
     }
 
-    inner class AddHolder internal constructor(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
+    inner class AddHolder internal constructor(view: View) : RecyclerView.ViewHolder(view),
+        View.OnClickListener {
         internal var srcAdd: ImageView
         internal var background: RelativeLayout
         internal var text: TextView
@@ -211,7 +226,10 @@ class ImageAddAdapter(private val mClickListener: OnClickChooseImage,
         }
 
         override fun onClick(v: View) {
-            mClickListener.onClickAdd(v, v.tag as Int)
+            if (attr.maxPhotos >= imageList!!.size || attr.maxPhotos == 0)
+                mClickListener.onClickAdd(v, v.tag as Int)
+            else
+                Toast.makeText(v.context, attr.messageWhenMaxSize, Toast.LENGTH_LONG).show()
         }
 
 

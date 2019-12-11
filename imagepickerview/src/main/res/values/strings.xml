@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ImagePickerView</string>
+    <string name="more_when_limit">Превышен лимит</string>
 </resources>
