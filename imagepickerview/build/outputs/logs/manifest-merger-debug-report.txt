@@ -1,0 +1,45 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:1:1-13:12
+INJECTED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:1:1-13:12
+INJECTED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:1:1-13:12
+INJECTED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:1:1-13:12
+INJECTED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:1:1-13:12
+INJECTED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:1:1-13:12
+INJECTED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:1:1-13:12
+	package
+		ADDED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:2:5-39
+		INJECTED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml
+		INJECTED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml
+		ADDED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:1:1-13:12
+		INJECTED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml
+		ADDED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:1:1-13:12
+		INJECTED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:1:11-69
+application
+ADDED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:4:5-12:19
+activity#ru.vvdev.imagepickerview.ImageActivity
+ADDED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:5:9-11:20
+	android:theme
+		ADDED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:6:13-56
+	android:name
+		ADDED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:7:13-42
+uses-sdk
+INJECTED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml
+INJECTED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml
+INJECTED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml
+INJECTED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml
+		ADDED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml
+		INJECTED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml
+		ADDED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml
+		INJECTED from /Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#fcffff</color>
+    <color name="background_add">#f2f3f3</color>
+    <color name="black">#000000</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="dark_grey">#e2e6e6</color>
+    <color name="grey">#a1a1a1</color>
+    <color name="light_grey">#e8e8e8</color>
+    <color name="light_white">#80ffffff</color>
+    <color name="white">#ffffff</color>
+    <dimen name="defAddHeight">40dp</dimen>
+    <dimen name="defAddWight">40dp</dimen>
+    <dimen name="defCornerRadius">8dp</dimen>
+    <dimen name="defHeight">90dp</dimen>
+    <dimen name="defTextSize">8sp</dimen>
+    <dimen name="defWidth">90dp</dimen>
+    <string name="app_name">ImagePickerView</string>
+    <string name="more_when_limit">Превышен лимит</string>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+
+    </style>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <declare-styleable name="TouchImageView">
+        <attr format="boolean" name="zoom_enabled"/>
+    </declare-styleable>
+    <declare-styleable name="imgPickr">
+        <attr format="reference|color" name="backgroundView"/>
+        <attr format="reference|color" name="close_btn_color"/>
+
+        <attr format="reference|dimension" name="viewHeight"/>
+        <attr format="reference|dimension" name="viewWidth"/>
+
+
+        <attr format="reference|dimension" name="cornerRadius"/>
+
+        <attr format="reference|color" name="backAdd"/>
+        <attr format="reference|integer" name="imageAdd"/>
+        <attr format="reference|dimension" name="addHeight"/>
+        <attr format="reference|dimension" name="addWidth"/>
+
+
+        <attr format="reference|string" name="text"/>
+        <attr format="reference|dimension" name="textSize"/>
+        <attr format="reference|color" name="textColor"/>
+        <attr name="textStyle">
+            <flag name="normal" value="0"/>
+            <flag name="bold" value="1"/>
+            <flag name="italic" value="2"/>
+        </attr>
+        <attr format="integer" name="maxPhoto"/>
+        <attr format="reference|string" name="messageWhenMaxSize"/>
+
+
+    </declare-styleable>
+</resources>

@@ -6,8 +6,6 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:name=".ImageActivity"
             >
-
-
         </activity>
     </application>
 </manifest>

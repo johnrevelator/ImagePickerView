@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <ru.vvdev.imagepickerview.ImageChooseLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:backgroundView="@android:color/black"
+        app:close_btn_color="@android:color/white"
+        app:cornerRadius="16dp"
+        app:imageAdd="@drawable/ic_close_inside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:maxPhoto="3"
+        app:text="KEKE"
+        app:textSize="12sp"
+        app:textStyle="italic" />
+
+    <ru.vvdev.imagepickerview.ImageChooseLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+
+        app:addHeight="40dp"
+        app:addWidth="40dp"
+        app:backAdd="@color/colorPrimary"
+        app:close_btn_color="@android:color/black"
+        app:cornerRadius="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:text="KEKE"
+        app:textColor="@color/black"
+        app:textSize="12sp"
+        app:textStyle="bold"
+        app:viewHeight="200dp"
+        app:viewWidth="100dp" />
+
+
+</LinearLayout>

@@ -1,0 +1,24 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="ru.vvdev.imagepickerview"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="16"
+8-->/Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->/Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml
+10
+11    <application>
+11-->/Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:4:5-12:19
+12        <activity
+12-->/Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:5:9-11:20
+13            android:name="ru.vvdev.imagepickerview.ImageActivity"
+13-->/Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:7:13-42
+14            android:theme="@style/AppTheme.NoActionBar" >
+14-->/Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:6:13-56
+15        </activity>
+16    </application>
+17
+18</manifest>
