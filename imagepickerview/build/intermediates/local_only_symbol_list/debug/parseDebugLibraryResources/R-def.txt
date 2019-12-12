@@ -4,6 +4,8 @@ attr? addHeight
 attr? addWidth
 attr? backAdd
 attr? backgroundView
+attr? canAddPhoto
+attr? canDelete
 attr? close_btn_color
 attr? cornerRadius
 attr? imageAdd
@@ -63,4 +65,4 @@ style AppTheme.AppBarOverlay
 style AppTheme.NoActionBar
 style AppTheme.PopupOverlay
 styleable TouchImageView zoom_enabled
-styleable imgPickr backgroundView close_btn_color viewHeight viewWidth cornerRadius backAdd imageAdd addHeight addWidth text textSize textColor textStyle maxPhoto messageWhenMaxSize
+styleable imgPickr backgroundView close_btn_color viewHeight viewWidth cornerRadius backAdd imageAdd addHeight addWidth text textSize textColor textStyle maxPhoto messageWhenMaxSize canAddPhoto canDelete

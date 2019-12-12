@@ -46,6 +46,9 @@
         </attr>
         <attr format="integer" name="maxPhoto"/>
         <attr format="reference|string" name="messageWhenMaxSize"/>
+        <attr format="boolean" name="canAddPhoto"/>
+        <attr format="boolean" name="canDelete"/>
+
 
 
     </declare-styleable><declare-styleable name="TouchImageView">
@@ -76,6 +79,9 @@
         </attr>
         <attr format="integer" name="maxPhoto"/>
         <attr format="reference|string" name="messageWhenMaxSize"/>
+        <attr format="boolean" name="canAddPhoto"/>
+        <attr format="boolean" name="canDelete"/>
+
 
 
     </declare-styleable><declare-styleable name="TouchImageView">

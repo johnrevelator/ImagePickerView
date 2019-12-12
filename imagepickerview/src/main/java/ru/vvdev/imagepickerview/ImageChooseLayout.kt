@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Color
 import android.net.Uri
-import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -18,8 +17,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import com.mlsdev.rximagepicker.RxImagePicker
 import com.mlsdev.rximagepicker.Sources
-import java.net.URI
-import java.util.*
+import android.support.v7.app.AlertDialog
 
 
 /**
@@ -34,6 +32,7 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
     private lateinit var imageRv: RecyclerView
     internal lateinit var imageAddAdapter: ImageAddAdapter
     private lateinit var imageAttr: ImageAttr
+    lateinit var lisenter: ILoadPahts
 
 
     val items: List<Image>
@@ -145,13 +144,41 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
 
     @SuppressLint("CheckResult")
     fun addImage(context: Context) {
-        RxImagePicker.with(context).requestImage(Sources.GALLERY).subscribe { uri ->
-            imageList.add(Image(uri))
-            imageAddAdapter.setData(imageList)
-            imageAddAdapter.reload()
-        }
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("")
+            .setMessage("Нужно выбрать откуда загрузить фотографию")
+            .setCancelable(true)
+            .setPositiveButton("Камера") { dialog, which ->
+                RxImagePicker.with(context).requestImage(Sources.CAMERA).subscribe { uri ->
+                    if (::lisenter.isInitialized) {
+                        lisenter.loadPhoto(uri)
+                    } else {
+                        imageList.add(Image(uri))
+                        imageAddAdapter.setData(imageList)
+                        imageAddAdapter.reload()
+                    }
+
+                }
+            }
+            .setNegativeButton(
+                "Галлерея"
+            ) { dialog, id ->
+                RxImagePicker.with(context).requestImage(Sources.GALLERY).subscribe { uri ->
+                    if (::lisenter.isInitialized) {
+                        lisenter.loadPhoto(uri)
+                    } else {
+                        imageList.add(Image(uri))
+                        imageAddAdapter.setData(imageList)
+                        imageAddAdapter.reload()
+                    }
+
+                }
+            }
+        val alert = builder.create()
+        alert.show()
 
     }
+
 
     fun setCanAddPhoto(b: Boolean) {
         if (b != imageAttr.canAddPhoto) {
@@ -234,6 +261,7 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
         }
     }
 
+
     fun uploadImage(image: Image) {
         val totalListSize = imageList.size + 1
         if (imageAttr.maxPhotos == 0 || totalListSize <= imageAttr.maxPhotos) {
@@ -243,6 +271,11 @@ class ImageChooseLayout(context: Context, attrs: AttributeSet?) : LinearLayout(c
         } else {
             Toast.makeText(context, imageAttr.messageWhenMaxSize, Toast.LENGTH_LONG).show()
         }
+    }
+
+    interface ILoadPahts {
+        fun loadPhoto(uri: Uri)
+
     }
 
 
