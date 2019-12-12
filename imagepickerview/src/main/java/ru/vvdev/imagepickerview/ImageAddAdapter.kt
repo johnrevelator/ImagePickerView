@@ -130,21 +130,12 @@ class ImageAddAdapter(
         View.OnClickListener, View.OnLongClickListener {
 
 
-        internal var userAvatar: ImageView
-        internal var close: ImageView
-        internal var closeBack: ImageView
-        internal var rootLay: ConstraintLayout
-        internal var imageCardView: CardView
-
-
-        init {
-            userAvatar = view.findViewById<View>(R.id.image) as ImageView
-            close = view.findViewById<View>(R.id.close) as ImageView
-            closeBack = view.findViewById<View>(R.id.close_back) as ImageView
-            rootLay = view.findViewById<View>(R.id.rootLayout) as ConstraintLayout
-            imageCardView = view.findViewById<View>(R.id.imageCard) as CardView
-
-        }
+        private var userAvatar: ImageView = view.findViewById<View>(R.id.image) as ImageView
+        private var close: ImageView = view.findViewById<View>(R.id.close) as ImageView
+        private var closeBack: ImageView = view.findViewById<View>(R.id.close_back) as ImageView
+        internal var rootLay: ConstraintLayout =
+            view.findViewById<View>(R.id.rootLayout) as ConstraintLayout
+        private var imageCardView: CardView = view.findViewById<View>(R.id.imageCard) as CardView
 
 
         fun bind(dialog: Image?, type: Int, position: Int, attr: ImageAttr) {
@@ -157,8 +148,15 @@ class ImageAddAdapter(
             userAvatar.layoutParams.width = attr.viewWight
             imageCardView.radius = attr.cornerRadius
 
-            close.setOnClickListener(this)
-            close.setColorFilter(attr.tintClose, PorterDuff.Mode.SRC_IN)
+            if (attr.canDelete) {
+                close.setOnClickListener(this)
+                close.setColorFilter(attr.tintClose, PorterDuff.Mode.SRC_IN)
+                close.visibility = View.VISIBLE
+                closeBack.visibility = View.VISIBLE
+            } else {
+                close.visibility = View.GONE
+                closeBack.visibility = View.INVISIBLE
+            }
             closeBack.setColorFilter(attr.backClose, PorterDuff.Mode.MULTIPLY)
             Glide.with(view.context)
                 .load(dialog.image)
@@ -192,17 +190,11 @@ class ImageAddAdapter(
 
     inner class AddHolder internal constructor(view: View) : RecyclerView.ViewHolder(view),
         View.OnClickListener {
-        internal var srcAdd: ImageView
-        internal var background: RelativeLayout
-        internal var text: TextView
-        internal var imageCard: CardView
-
-        init {
-            srcAdd = view.findViewById<View>(R.id.camera) as ImageView
-            background = view.findViewById<View>(R.id.add) as RelativeLayout
-            text = view.findViewById<View>(R.id.tv) as TextView
-            imageCard = view.findViewById<View>(R.id.imageCard) as CardView
-        }
+        private var srcAdd: ImageView = view.findViewById<View>(R.id.camera) as ImageView
+        internal var background: RelativeLayout =
+            view.findViewById<View>(R.id.add) as RelativeLayout
+        private var text: TextView = view.findViewById<View>(R.id.tv) as TextView
+        private var imageCard: CardView = view.findViewById<View>(R.id.imageCard) as CardView
 
         fun bind(position: Int, attr: ImageAttr) {
             imageCard.tag = position

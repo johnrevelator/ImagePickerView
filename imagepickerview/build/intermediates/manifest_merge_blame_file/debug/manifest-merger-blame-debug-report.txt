@@ -7,13 +7,13 @@
 7    <uses-sdk
 8        android:minSdkVersion="16"
 8-->/Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml
-9        android:targetSdkVersion="29" />
+9        android:targetSdkVersion="28" />
 9-->/Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml
 10
 11    <application>
-11-->/Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:4:5-12:19
+11-->/Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:4:5-10:19
 12        <activity
-12-->/Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:5:9-11:20
+12-->/Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:5:9-9:20
 13            android:name="ru.vvdev.imagepickerview.ImageActivity"
 13-->/Users/vvdev/AndroidStudioProjects/ImagePickerView/imagepickerview/src/main/AndroidManifest.xml:7:13-42
 14            android:theme="@style/AppTheme.NoActionBar" >

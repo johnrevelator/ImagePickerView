@@ -26,6 +26,9 @@
         </attr>
         <attr name="maxPhoto" format="integer" />
         <attr name="messageWhenMaxSize" format="reference|string" />
+        <attr name="canAddPhoto" format="boolean" />
+        <attr name="canDelete" format="boolean" />
+
 
 
     </declare-styleable>

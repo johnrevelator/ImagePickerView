@@ -7,7 +7,8 @@ class ImageAttr(
     var backClose: Int,
     var tintClose: Int,
     val addAttr: AddAttr,
-    val maxPhotos: Int,
-    val messageWhenMaxSize: String
-
+    var maxPhotos: Int,
+    val messageWhenMaxSize: String,
+    var canAddPhoto: Boolean,
+    val canDelete: Boolean
 )
